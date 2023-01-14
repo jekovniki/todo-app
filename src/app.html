@@ -4,9 +4,43 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
+<style>
+	body {
+		padding: 0 1rem;
+		margin-left:auto;
+		margin-right:auto;
+		animation: colorChange;
+		animation-duration: 2s;
+		background-color: #00308F;
+		color: #fff;
+		font-family: 'Lato', sans-serif;
+	}
+	h1, h2, h3 , h4, h5, p, a {
+		color: #fff;
+		font-family: 'Lato', sans-serif;
+	}
+
+	@media only screen and (min-width:767px) {
+		body {
+			max-width: 1024px;
+			padding: 0;
+		}
+	}
+
+	@keyframes colorChange {
+		from {
+			background-color: #fff;
+		} to {
+			background-color: #00308F;
+		}
+	}
+</style>
