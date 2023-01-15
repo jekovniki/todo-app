@@ -37,23 +37,11 @@
         display: flex;
         justify-content: space-between;
     }
-    .checkbox {
-        display: flex;
-        align-items: center;
-    }
     .todo-title {
         transition: 0.3s;
     }
     .todo-content {
         transition: 0.3s;
-    }
-    .remove {
-        font-size:4rem;
-        background-color:red;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        padding: 0 1rem;
     }
 </style>
 <div class="todo-tile" on:click={handleClick}>

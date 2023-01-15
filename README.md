@@ -3,35 +3,24 @@ Small todo application build on svelte. It uses localstorage to store the todo's
 
 After you've added the tile, click on it in order to mark it as completed.
 
-## Creating a project
+## Building
 
-If you're seeing this, you've probably already done this step. Congrats!
+To run the application:
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+npm install
+npm run build
+npm run preview
 ```
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created a project and installed dependencies with `npm install` (or `npm install` or `yarn`), start a development server:
 
 ```bash
+npm install
 npm run dev
 
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
