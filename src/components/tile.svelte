@@ -1,6 +1,5 @@
 <script lang="typescript">
     export let id = 0, title = "", task = "", date = "", completed = false;
-    let removableItemId = 0;
     const handleClick = () => {
         let elementNumber = id - 1;
         const tile = document.querySelectorAll('.todo-tile');
@@ -11,7 +10,6 @@
             title[elementNumber].style.margin = 0;
             content[elementNumber].style.margin = 0;
             completed = true;
-            removableItemId = id;
         } else {
             tile[elementNumber].style.backgroundColor = "#ADD8E6";
             title[elementNumber].style.marginTop = "0.83em";

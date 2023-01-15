@@ -1,6 +1,7 @@
-# create-svelte
+# Todo application
+Small todo application build on svelte. It uses localstorage to store the todo's.
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+After you've added the tile, click on it in order to mark it as completed.
 
 ## Creating a project
 
@@ -34,5 +35,3 @@ npm run build
 ```
 
 You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
