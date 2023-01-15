@@ -1,5 +1,7 @@
 <script lang="typescript">
-    export let text;
+    export let buttonAction = () => {
+        console.log("Successfull button action");
+    }
 </script>
 <style>
     button {
@@ -12,6 +14,8 @@
         background-color: #63b5cf;
         border-radius: 5px;
         transition: 0.4s;
+        text-transform: uppercase;
+        margin-top: 2rem;
     }
     button:hover {
         transition: 0.4s;
@@ -19,4 +23,7 @@
         cursor: pointer;
     }
 </style>
-<button>{ text }</button>
+<button on:click={buttonAction}>
+    <slot>
+    </slot>
+</button>
