@@ -1,11 +1,18 @@
 <script lang="typescript">
     import Button from './button.svelte';
     import Input from './input.svelte';
-    // // import { addTodo } from '../stores/stores';
+    import { storage } from '../stores/index';
 
     const handleClick = () => {
-        console.log('handle click');
-        // addTodo({name: "Gosho", title: "Todo"});
+        const title = document.querySelector('input[name="title"]');
+        const task = document.querySelector('input[name="task"]');
+        const date = document.querySelector('input[name="date"]');
+        
+        storage.addData({ 
+            title: title.value ?? "", 
+            task: task.value ?? "", 
+            date: date.value ?? "",
+        });
     }
 </script>
 <style>
