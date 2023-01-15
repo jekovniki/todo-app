@@ -1,7 +1,9 @@
 <script lang="typescript">
     import Header from "../components/header.svelte";
+    import Main from "../components/main.svelte";
 </script>
 <Header />
-<slot>
-
-</slot>
+<Main>
+    <slot>
+    </slot>
+</Main>

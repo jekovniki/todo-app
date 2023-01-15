@@ -5,7 +5,7 @@ class Storage implements ApplicationStorage {
 
     public getData(selector = "todo"): Array<TodoTask> {
         const items = [];
-        for (let index = 1; index < 10; index++) {
+        for (let index = 1; index < 100; index++) {
             if (typeof window !== "undefined") {
                 const data = localStorage?.getItem(`${selector}-${index}`) as string;
                 if (data) {
@@ -23,6 +23,18 @@ class Storage implements ApplicationStorage {
             completed: item.completed ?? false
         }));
         this.i++;
+    }
+    public update(item: TodoTask, update: string): void {
+        localStorage.setItem(update, JSON.stringify({
+            ...item, 
+            id: this.i, 
+            completed: item.completed ?? false
+        }));
+        this.i++;
+    }
+
+    public removeAll(){
+        localStorage.clear();
     }
 }
 
