@@ -5,10 +5,11 @@ class Storage implements ApplicationStorage {
 
     public getData(selector = "todo"): Array<TodoTask> {
         const items = [];
-        for (let index = 1; index < this.i; index++) {
+        for (let index = 1; index < 10; index++) {
             const data = localStorage.getItem(`${selector}-${index}`) as string;
-            
-            items.push(JSON.parse(data));
+            if (data) {
+                items.push(JSON.parse(data));
+            }
         }
         return items ?? [{}];
     }
