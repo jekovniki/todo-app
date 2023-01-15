@@ -1,7 +1,5 @@
 <script lang="typescript">
-    export let type = "";
-    export let name = "";
-    export let placeholder = "";
+    export let type = "", name = "", placeholder = "";
 </script>
 <style>
     input {

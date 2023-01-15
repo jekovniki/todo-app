@@ -19,6 +19,9 @@
     #todo {
         box-sizing: border-box;
     }
+    a {
+        text-decoration: none;
+    }
 </style>
 
 <form id="todo">
