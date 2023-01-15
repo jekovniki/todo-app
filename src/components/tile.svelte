@@ -1,27 +1,26 @@
 <script lang="typescript">
-    export let id = 0;
-    export let title = "";
-    export let task = "";
-    export let date = "";
-    export let completed = false;
-
+    export let id = 0, title = "", task = "", date = "", completed = false;
+    let removableItemId = 0;
     const handleClick = () => {
-        const tile = document.querySelector('.todo-tile');
-        const title = document.querySelector('.todo-title');
-        const content = document.querySelector('.todo-content');
-        if (tile.style.backgroundColor !== "#90EE90") {
-            tile.style.backgroundColor = "#90EE90";
-            title.style.margin = 0;
-            content.style.margin = 0;
+        let elementNumber = id - 1;
+        const tile = document.querySelectorAll('.todo-tile');
+        const title = document.querySelectorAll('.todo-title');
+        const content = document.querySelectorAll('.todo-content');
+        if (completed === false) {
+            tile[elementNumber].style.backgroundColor = "#90EE90";
+            title[elementNumber].style.margin = 0;
+            content[elementNumber].style.margin = 0;
             completed = true;
+            removableItemId = id;
         } else {
-            tile.style.backgroundColor = "#90EE90";
-            title.style.margin = "0.83em";
-            content.style.margin = "1em";
+            tile[elementNumber].style.backgroundColor = "#ADD8E6";
+            title[elementNumber].style.marginTop = "0.83em";
+            title[elementNumber].style.marginBottom = "0.83em";
+            content[elementNumber].style.marginTop = "1em";
+            content[elementNumber].style.marginBottom = "1em";
             completed = false;
         }
     }
-    
 </script>
 <style>
     .todo-tile {
@@ -50,8 +49,16 @@
     .todo-content {
         transition: 0.3s;
     }
+    .remove {
+        font-size:4rem;
+        background-color:red;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+    }
 </style>
-<div class="todo-tile">
+<div class="todo-tile" on:click={handleClick}>
     <div class="content">
         <div class="info">
             <div class="calendar">Date: { date }</div>
@@ -60,5 +67,4 @@
         <h2 class="todo-title">{ id }. { title }</h2>
         <p class="todo-content">{ task}</p>
     </div>
-    <div class="checkbox"><input type="checkbox" on:click={handleClick} /></div>
 </div>
