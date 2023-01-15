@@ -25,5 +25,5 @@
     <Input type="text" name="title" placeholder="Title"/>
     <Input type="text" name="task" placeholder="Task"/>
     <Input type="date" name="date" />
-    <Button buttonAction={handleClick}>Add new task</Button>
+    <Button buttonAction={handleClick}><a href="/">Add new task</a></Button>
 </form>
