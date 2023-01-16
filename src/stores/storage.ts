@@ -4,36 +4,37 @@ class Storage implements ApplicationStorage {
     protected i = 1;
 
     public getData(selector = "todo"): Array<TodoTask> {
-        const items = [];
-        for (let index = 1; index < 100; index++) {
-            if (typeof window !== "undefined") {
-                const data = localStorage?.getItem(`${selector}-${index}`) as string;
-                if (data) {
-                    items.push(JSON.parse(data));
-                }
-            }
+        let data;
+        if (typeof window !== "undefined") {
+            data = localStorage?.getItem(selector);
         }
-        return items ?? [{}];
-    }
+        
+        return typeof data === "string" ? JSON.parse(data) : [];
+    }  
 
     public addData(item: TodoTask, type = "todo"): void {
-        localStorage.setItem(`${type}-${this.i}`, JSON.stringify({
-            ...item, 
-            id: this.i, 
+        const data = this.getData();
+        data.push({
+            ...item,
+            id: this.i,
             completed: item.completed ?? false
-        }));
+        })
+        
+        localStorage.setItem(type, JSON.stringify(data));
         this.i++;
     }
-    public update(item: TodoTask, update: string): void {
-        localStorage.setItem(update, JSON.stringify({
-            ...item, 
-            id: this.i, 
-            completed: item.completed ?? false
-        }));
-        this.i++;
+
+    public updateAll(completed: boolean): void {
+        const data = this.getData();
+        for (const todo of data) {
+            todo.completed = completed;
+        }
+        
+        localStorage.setItem("todo", JSON.stringify(data));
     }
 
     public removeAll(){
+        this.i = 1;
         localStorage.clear();
     }
 }

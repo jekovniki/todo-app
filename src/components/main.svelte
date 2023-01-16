@@ -3,26 +3,12 @@
     import { storage, todoList } from "../stores/index";
 
     const handleResolveAll = () => {
-        const data = storage.getData();
-        for (const todo in data) {
-            const updated = data[todo];
-            updated.completed = true;
-            storage.update(updated, `todo-${updated.id}`)
-        }
-        
+        storage.updateAll(true);
         $todoList = storage.getData();
     }
 
     const handleUnresolveAll = () => {
-        const data = storage.getData();
-        for (const todo in data) {
-            const updated = data[todo];
-            console.log(updated);
-            
-            updated.completed = false;
-            storage.update(updated, `todo-${updated.id}`)
-        }
-        
+        storage.updateAll(false);
         $todoList = storage.getData();
     }
 
