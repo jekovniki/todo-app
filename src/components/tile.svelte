@@ -1,21 +1,13 @@
 <script lang="typescript">
+	import { useUpdateTile } from "../hooks/useUpdateTile";
+
+
     export let id = 0, title = "", task = "", date = "", completed = false;
     const handleClick = () => {
-        let elementNumber = id - 1;
-        const tile = document.querySelectorAll('.todo-tile');
-        const title = document.querySelectorAll('.todo-title');
-        const content = document.querySelectorAll('.todo-content');
+        useUpdateTile(id, completed);
         if (completed === false) {
-            tile[elementNumber].style.backgroundColor = "#90EE90";
-            title[elementNumber].style.margin = 0;
-            content[elementNumber].style.margin = 0;
             completed = true;
         } else {
-            tile[elementNumber].style.backgroundColor = "#ADD8E6";
-            title[elementNumber].style.marginTop = "0.83em";
-            title[elementNumber].style.marginBottom = "0.83em";
-            content[elementNumber].style.marginTop = "1em";
-            content[elementNumber].style.marginBottom = "1em";
             completed = false;
         }
     }

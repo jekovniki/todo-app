@@ -1,15 +1,18 @@
 <script lang="typescript">
     import Button from "./button.svelte";
     import { storage, todoList } from "../stores/index";
+    import { useUpdateAllTiles } from "../hooks/useUpdateAll";
 
     const handleResolveAll = () => {
         storage.updateAll(true);
         $todoList = storage.getData();
+        useUpdateAllTiles(false);
     }
 
     const handleUnresolveAll = () => {
         storage.updateAll(false);
         $todoList = storage.getData();
+        useUpdateAllTiles(true);
     }
 
     const handleRemoveAll = () => {
