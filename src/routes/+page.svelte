@@ -1,16 +1,16 @@
 <script lang="typescript">
 	import { onMount } from "svelte";
-    import Button from "../components/button.svelte";
     import { storage, todoList } from "../stores/index";
     import Tile from "../components/tile.svelte";
 
     onMount(() => {
         $todoList = storage.getData();
+        console.log($todoList);
     })
     
 </script>
 <style>
-    section {
+    main {
         flex: 1;
         margin:0 1rem;
     }
@@ -22,10 +22,17 @@
         text-decoration: none;
     }
 </style>
-<section id="todo">
+<main>
     {#each $todoList as $todo}
-        <Tile id={$todo.id} title={$todo.title} task={$todo.task} date={$todo.date} completed={$todo.completed} />
+        <Tile 
+            id={$todo.id} 
+            title={$todo.title} 
+            task={$todo.task} 
+            date={$todo.date} 
+            completed={$todo.completed}
+            color={$todo.color}
+             />
         {:else}
         <p class="empty">No todo's exist :( .<br/> Please click the button under in order to create new todo</p>
     {/each}
-</section>
+</main>

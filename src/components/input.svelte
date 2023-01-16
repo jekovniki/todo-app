@@ -1,5 +1,5 @@
 <script lang="typescript">
-    export let type = "", name = "", placeholder = "";
+    export let type = "", name = "", placeholder = "", inputAction = () => {};
 </script>
 <style>
     input {
@@ -17,4 +17,4 @@
     }
 
 </style>
-<input type={type} name={name} placeholder={placeholder} />
+<input on:abort={inputAction} type={type} name={name} placeholder={placeholder} />

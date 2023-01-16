@@ -21,7 +21,7 @@
     }
 </script>
 <style>
-    main {
+    .app {
         display: flex;
     }
     aside {
@@ -33,7 +33,7 @@
     }
 </style>
 
-<main>
+<div class="app">
     <aside>
         <Button buttonAction={handleResolveAll}>Resolve all</Button>
         <Button buttonAction={handleUnresolveAll}>Unresolve all</Button>
@@ -41,4 +41,4 @@
         <Button><a href="/add">Add new task</a></Button>
     </aside>
     <slot></slot>
-</main>
+</div>
