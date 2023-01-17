@@ -79,11 +79,18 @@
     .value p {
         margin: 0;
     }
+
+    .error-message {
+        color:red;
+        padding: 2rem 0.5rem;
+        border-radius: 25px;
+        background-color: #fff;
+    }
 </style>
 
 <div class="container">
     {#if isError}
-        <p style="color:red">Title field is required!</p>
+        <p class="error-message">Title field is required!</p>
     {/if}
     <form id="todo">
         <Input type="text" name="title" placeholder="Title" required={true}/>
