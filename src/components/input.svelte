@@ -1,5 +1,5 @@
 <script lang="typescript">
-    export let type = "", name = "", placeholder = "", inputAction = () => {};
+    export let type = "", name = "", placeholder = "", inputAction = () => {}, required = false;
 </script>
 <style>
     input {
@@ -17,4 +17,4 @@
     }
 
 </style>
-<input on:click={inputAction} type={type} name={name} placeholder={placeholder} />
+<input on:click={inputAction} type={type} name={name} placeholder={placeholder} required={required} />

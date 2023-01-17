@@ -1,9 +1,17 @@
 <script lang="typescript">
 	import { onMount } from "svelte";
-    import { storage, todoList } from "../stores/index";
+    import { storage, todoList, fetchedTodoList } from "../stores/index";
     import Tile from "../components/tile.svelte";
     import Filter from "../components/filter.svelte";
 
+    const getTodos = () => {
+        const todos = $fetchedTodoList;
+        for (const todo of todos) {
+            storage.addData(todo);
+        }
+        $todoList = $fetchedTodoList;
+
+    }
     onMount(() => {
         $todoList = storage.getData();
     })
@@ -35,5 +43,8 @@
              />
         {:else}
         <p class="empty">No todo's exist :( .<br/> Please click the button under in order to create new todo</p>
+        <div>
+            <button on:click={getTodos}>Get random todo's</button>
+        </div>
     {/each}
 </main>

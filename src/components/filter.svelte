@@ -38,6 +38,10 @@
 
     const filterByColor = () => {
         const color = document.querySelector('select');
+        if (color === null || 'value' in color && color.value === "No colored todos") {
+            return;
+        }
+        
         if (color !== null && 'value' in color && color.value === "Default") {
             $todoList = storage.getData();
         }

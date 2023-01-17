@@ -1,9 +1,9 @@
 <script lang="typescript">
 	import { useUpdateTile } from "../hooks/useUpdateTile";
-    import { todoList, storage } from "../stores/index";
-
+    import { todoList } from "../stores/index";
 
     export let id = 0, title = "", task = "", date = "", completed = false, color ="#ADD8E6";
+
     const handleClick = () => {
         const todos = $todoList;
         const todoIndex = todos.findIndex(todo => todo.id === id);

@@ -5,13 +5,19 @@
 
     const handleResolveAll = () => {
         storage.updateAll(true);
-        $todoList = storage.getData();
+        $todoList = $todoList.map(todo => {
+            todo.completed = true;
+            return todo;
+        })
         useUpdateAllTiles(false);
     }
 
     const handleUnresolveAll = () => {
         storage.updateAll(false);
-        $todoList = storage.getData();
+        $todoList = $todoList.map(todo => {
+            todo.completed = false;
+            return todo;
+        })
         useUpdateAllTiles(true);
     }
 
