@@ -16,5 +16,9 @@
         color: #ffffff;
     }
 
+    input[name="color"] {
+        background: linear-gradient(#e66465, #9198e5);
+    }
+
 </style>
 <input on:click={inputAction} type={type} name={name} placeholder={placeholder} required={required} />

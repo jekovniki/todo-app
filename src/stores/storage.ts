@@ -1,4 +1,5 @@
 import type { ApplicationStorage, TodoTask } from "../interfaces/IStores";
+import { values } from "../utils/config";
 
 class Storage implements ApplicationStorage {
     protected i = 1;
@@ -14,12 +15,11 @@ class Storage implements ApplicationStorage {
 
     public addData(item: TodoTask, type = "todo"): void {
         const data = this.getData();
-        console.log(item);
         
         data.push({
             ...item,
             id: this.i,
-            color: item.color === "Default" ? "#ADD8E6" : item.color,
+            color: item.color === values.dropdown.default ? values.color.default : item.color,
             completed: item.completed ?? false
         })
         

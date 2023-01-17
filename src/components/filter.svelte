@@ -2,12 +2,8 @@
     import { todoList, storage } from "../stores/index";
 	import Input from "./input.svelte";
     import Options from "./options.svelte";
-    const options = [];
-    $todoList.filter(tile => {
-        options.push(tile.color ?? "");
-    });
+    import { querySelector, values } from "../utils/config";
     
-    const defaultState = JSON.parse(JSON.stringify(storage.getData()));
     const inputChecked = {
         resolved: false,
         unresolved: false
@@ -20,7 +16,7 @@
             $todoList = list;
         } else {
             inputChecked.resolved = !inputChecked.resolved;
-            $todoList = defaultState;
+            $todoList = storage.getData();
         }
     }
 
@@ -32,23 +28,34 @@
             $todoList = list;
         } else {
             inputChecked.unresolved = !inputChecked.unresolved;
-            $todoList = defaultState;
+            $todoList = storage.getData();
         }
     }
 
     const filterByColor = () => {
-        const color = document.querySelector('select');
-        if (color === null || 'value' in color && color.value === "No colored todos") {
+        const color = document.querySelector(querySelector.select);
+        if (color === null || 'value' in color && color.value === values.dropdown.disabled) {
             return;
         }
         
-        if (color !== null && 'value' in color && color.value === "Default") {
+        if (color !== null && 'value' in color && color.value === values.dropdown.default) {
             $todoList = storage.getData();
         }
-        if (color !== null && 'value' in color && color.value !== "Default") {
+        if (color !== null && 'value' in color && color.value !== values.dropdown.default) {
             const list = $todoList.filter(item => item.color === color.value);
             $todoList = list;
         }
+    }
+
+    const resetAllFilters = () => {
+        $todoList = storage.getData();
+        const allCheckboxes = document.querySelectorAll("input[type='checkbox']");
+        
+        for (const checkbox of allCheckboxes) {
+            
+            checkbox.checked = false;
+        }
+
     }
     
 </script>
@@ -61,13 +68,16 @@
     .column {
         display: flex;
     }
+
+    .column.remove {
+        background-color: #ffcccb;
+    }
     #filter {
-        margin-bottom:1rem;
+        margin: 3rem 0;
     }
 </style>
 
 <section id="filter">
-    <div>Filter todo's</div>
     <div class="filter-options">
         <div class="column">
             <label for="resolved">Resolved</label>
@@ -77,6 +87,9 @@
             <label for="unresolved">Unresolved</label>
             <Input type="checkbox" name="unresolved" inputAction={filterByUnresolved} />
         </div>
-        <Options label="Color" options={[... new Set(options)]} optionsEvent={filterByColor}/>
+        <Options label="Color" optionsEvent={filterByColor}/>
+        <div class="column" on:click={resetAllFilters}>
+            Reset all
+        </div>
     </div>
 </section>

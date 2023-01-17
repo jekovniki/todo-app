@@ -3,22 +3,14 @@
     import { storage, todoList } from "../stores/index";
     import { useUpdateAllTiles } from "../hooks/useUpdateAll";
 
-    const handleResolveAll = () => {
-        storage.updateAll(true);
+    function handleAllTodos(boolean){
+        storage.updateAll(boolean);
         $todoList = $todoList.map(todo => {
-            todo.completed = true;
+            todo.completed = boolean;
             return todo;
-        })
-        useUpdateAllTiles(false);
-    }
+        });
 
-    const handleUnresolveAll = () => {
-        storage.updateAll(false);
-        $todoList = $todoList.map(todo => {
-            todo.completed = false;
-            return todo;
-        })
-        useUpdateAllTiles(true);
+        useUpdateAllTiles(!boolean);
     }
 
     const handleRemoveAll = () => {
@@ -41,8 +33,8 @@
 
 <div class="app">
     <aside>
-        <Button buttonAction={handleResolveAll}>Resolve all</Button>
-        <Button buttonAction={handleUnresolveAll}>Unresolve all</Button>
+        <Button buttonAction={() => { handleAllTodos(true) }}>Resolve all</Button>
+        <Button buttonAction={() => { handleAllTodos(false) }}>Unresolve all</Button>
         <Button buttonAction={handleRemoveAll}>Remove all todos</Button>
         <Button><a href="/add">Add new task</a></Button>
     </aside>

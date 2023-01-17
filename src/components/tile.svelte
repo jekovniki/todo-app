@@ -1,21 +1,21 @@
 <script lang="typescript">
 	import { useUpdateTile } from "../hooks/useUpdateTile";
     import { todoList } from "../stores/index";
+    import { values } from "../utils/config";
+    import { onMount } from "svelte";
 
-    export let id = 0, title = "", task = "", date = "", completed = false, color ="#ADD8E6";
+    export let id = 0, title = "", task = "", date = "", completed = false, color = values.color.default;
+    
+    onMount(() => {
+        useUpdateTile(id, !completed);
+    })
 
     const handleClick = () => {
         const todos = $todoList;
         const todoIndex = todos.findIndex(todo => todo.id === id);
         useUpdateTile(id, completed);
-        
-        if (completed === false) {
-            completed = !completed;
-            todos[todoIndex].completed = completed;
-        } else {
-            completed = !completed;
-            todos[todoIndex].completed = completed;
-        }
+
+        todos[todoIndex].completed = !completed;
         $todoList = todos;
     }
 </script>
@@ -49,6 +49,6 @@
             <div class="completed">Status: { completed === true ? "Completed" : "Todo" }</div>
         </div>
         <h2 class="todo-title">{ id }. { title }</h2>
-        <p class="todo-content">{ task}</p>
+        <p class="todo-content">{ task ? task : "This todo doesn't have a text!" }</p>
     </div>
 </div>

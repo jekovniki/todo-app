@@ -1,8 +1,10 @@
 <script lang="typescript">
 	import { onMount } from "svelte";
-    import { storage, todoList, fetchedTodoList } from "../stores/index";
+    import { storage, todoList, fetchedTodoList, colorOptions } from "../stores/index";
     import Tile from "../components/tile.svelte";
     import Filter from "../components/filter.svelte";
+    import Button from "../components/button.svelte";
+    import { useUpdateTile } from "../hooks/useUpdateTile"
 
     const getTodos = () => {
         const todos = $fetchedTodoList;
@@ -11,10 +13,17 @@
         }
         $todoList = $fetchedTodoList;
 
+        for (const todo of $todoList) {
+            useUpdateTile(todo.id, !todo.completed)
+        }
+
     }
     onMount(() => {
         $todoList = storage.getData();
-    })
+        $todoList.filter(tile => {
+            $colorOptions.push(tile.color ?? "");
+        });
+    });
     
 </script>
 <style>
@@ -28,6 +37,12 @@
     }
     a {
         text-decoration: none;
+    }
+    .generate {
+        margin-top: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
     }
 </style>
 <main>
@@ -43,8 +58,8 @@
              />
         {:else}
         <p class="empty">No todo's exist :( .<br/> Please click the button under in order to create new todo</p>
-        <div>
-            <button on:click={getTodos}>Get random todo's</button>
+        <div class="generate">
+            <Button buttonAction={getTodos}>Get random todo's</Button>
         </div>
     {/each}
 </main>

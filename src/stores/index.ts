@@ -6,6 +6,7 @@ export const storage = new Storage();
 
 export const todoList = writable(storage.getData());
 export const fetchedTodoList = writable([])
+export const colorOptions = writable([]);
 
 const fetchTodo = async () => {
     const result = await fetch(todoDataURL);

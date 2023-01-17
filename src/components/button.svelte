@@ -1,7 +1,5 @@
 <script lang="typescript">
-    export let buttonAction = () => {
-        console.log("Successfull button action");
-    }
+    export let buttonAction = () => {};
 </script>
 <style>
     button {

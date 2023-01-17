@@ -2,6 +2,7 @@
     import Button from './button.svelte';
     import Input from './input.svelte';
     import { storage } from '../stores/index';
+    import { values } from '../utils/config';
 
     let isActiveColorPicker = false;
     let isError = false;
@@ -12,7 +13,7 @@
         const task = document.querySelector('input[name="task"]');
         const date = document.querySelector('input[name="date"]');
         
-        if (title.value == "") {
+        if (title === null || title === undefined || title.value == "") {
             event?.preventDefault();
             isError = true;
             return false;
@@ -21,9 +22,9 @@
 
         storage.addData({ 
             title: title.value, 
-            task: task.value ?? "", 
-            date: date.value ?? "",
-            color: input?.innerHTML?.length > 7 ? "Default" : input?.innerHTML,
+            task: task?.value ?? "", 
+            date: date?.value ?? "",
+            color: input?.innerHTML?.length > 7 ? values.dropdown.default : input?.innerHTML,
         });
     }
 
@@ -31,8 +32,8 @@
         isActiveColorPicker = false;
         const input = document.querySelector('.color-input .value');
         const color = document.querySelector('input[name="color"]');
-        
-        if (input && color) {
+
+        if (input && 'innerText' in input && color && 'value' in color) {
             input.innerText = color.value;
         }
     }
@@ -78,11 +79,18 @@
     .value p {
         margin: 0;
     }
+
+    .error-message {
+        color:red;
+        padding: 2rem 0.5rem;
+        border-radius: 25px;
+        background-color: #fff;
+    }
 </style>
 
 <div class="container">
     {#if isError}
-        <p style="color:red">Title field is required!</p>
+        <p class="error-message">Title field is required!</p>
     {/if}
     <form id="todo">
         <Input type="text" name="title" placeholder="Title" required={true}/>
