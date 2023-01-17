@@ -2,10 +2,10 @@
 	import { onMount } from "svelte";
     import { storage, todoList } from "../stores/index";
     import Tile from "../components/tile.svelte";
+    import Filter from "../components/filter.svelte";
 
     onMount(() => {
         $todoList = storage.getData();
-        console.log($todoList);
     })
     
 </script>
@@ -23,6 +23,7 @@
     }
 </style>
 <main>
+    <Filter />
     {#each $todoList as $todo}
         <Tile 
             id={$todo.id} 

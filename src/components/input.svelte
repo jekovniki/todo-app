@@ -17,4 +17,4 @@
     }
 
 </style>
-<input on:abort={inputAction} type={type} name={name} placeholder={placeholder} />
+<input on:click={inputAction} type={type} name={name} placeholder={placeholder} />
