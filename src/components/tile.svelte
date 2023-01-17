@@ -1,8 +1,9 @@
 <script lang="typescript">
 	import { useUpdateTile } from "../hooks/useUpdateTile";
     import { todoList } from "../stores/index";
+    import { values } from "../utils/config";
 
-    export let id = 0, title = "", task = "", date = "", completed = false, color ="#ADD8E6";
+    export let id = 0, title = "", task = "", date = "", completed = false, color = values.color.default;
 
     const handleClick = () => {
         const todos = $todoList;

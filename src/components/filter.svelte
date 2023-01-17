@@ -2,6 +2,8 @@
     import { todoList, storage } from "../stores/index";
 	import Input from "./input.svelte";
     import Options from "./options.svelte";
+    import { querySelector, values } from "../utils/config";
+    
     const options = [];
     $todoList.filter(tile => {
         options.push(tile.color ?? "");
@@ -37,15 +39,15 @@
     }
 
     const filterByColor = () => {
-        const color = document.querySelector('select');
-        if (color === null || 'value' in color && color.value === "No colored todos") {
+        const color = document.querySelector(querySelector.select);
+        if (color === null || 'value' in color && color.value === values.dropdown.disabled) {
             return;
         }
         
-        if (color !== null && 'value' in color && color.value === "Default") {
+        if (color !== null && 'value' in color && color.value === values.dropdown.default) {
             $todoList = storage.getData();
         }
-        if (color !== null && 'value' in color && color.value !== "Default") {
+        if (color !== null && 'value' in color && color.value !== values.dropdown.default) {
             const list = $todoList.filter(item => item.color === color.value);
             $todoList = list;
         }

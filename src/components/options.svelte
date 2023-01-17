@@ -1,9 +1,9 @@
 <script language="typescript">
-    import Button from "./button.svelte";
-    export let label = "Default", options = [''], optionsEvent = () => {};
+    import { values } from "../utils/config";
+    export let label = values.dropdown.default, options = [''], optionsEvent = () => {};
 
     if (options.length > 0) {
-        options.unshift('Default');
+        options.unshift(values.dropdown.default);
     }
 </script>
 <style>
