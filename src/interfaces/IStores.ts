@@ -8,5 +8,6 @@ export type TodoTask = {
     title: string;
     task: string;
     date: string;
+    color?: string;
     completed?: boolean;
 }

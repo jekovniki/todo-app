@@ -14,9 +14,12 @@ class Storage implements ApplicationStorage {
 
     public addData(item: TodoTask, type = "todo"): void {
         const data = this.getData();
+        console.log(item);
+        
         data.push({
             ...item,
             id: this.i,
+            color: item.color === "Default" ? "#ADD8E6" : item.color,
             completed: item.completed ?? false
         })
         
