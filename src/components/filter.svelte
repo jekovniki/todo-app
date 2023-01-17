@@ -4,11 +4,6 @@
     import Options from "./options.svelte";
     import { querySelector, values } from "../utils/config";
     
-    const options = [];
-    $todoList.filter(tile => {
-        options.push(tile.color ?? "");
-    });
-    
     const inputChecked = {
         resolved: false,
         unresolved: false
@@ -92,7 +87,7 @@
             <label for="unresolved">Unresolved</label>
             <Input type="checkbox" name="unresolved" inputAction={filterByUnresolved} />
         </div>
-        <Options label="Color" options={[... new Set(options)]} optionsEvent={filterByColor}/>
+        <Options label="Color" optionsEvent={filterByColor}/>
         <div class="column" on:click={resetAllFilters}>
             Reset all
         </div>
