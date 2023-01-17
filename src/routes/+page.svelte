@@ -5,7 +5,12 @@
     import Filter from "../components/filter.svelte";
 
     const getTodos = () => {
+        const todos = $fetchedTodoList;
+        for (const todo of todos) {
+            storage.addData(todo);
+        }
         $todoList = $fetchedTodoList;
+
     }
     onMount(() => {
         $todoList = storage.getData();

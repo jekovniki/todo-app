@@ -17,9 +17,8 @@ const fetchTodo = async () => {
         }
     });
     const todos = loadedTodo.slice(0, 10);
-    console.log(todos);
     
     fetchedTodoList.set(todos);
 }
 
-// fetchTodo();
+fetchTodo();
