@@ -22,4 +22,4 @@ const fetchTodo = async () => {
     fetchedTodoList.set(todos);
 }
 
-fetchTodo();
+// fetchTodo();

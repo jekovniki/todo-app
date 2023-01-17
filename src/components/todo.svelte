@@ -4,6 +4,7 @@
     import { storage } from '../stores/index';
 
     let isActiveColorPicker = false;
+    let isError = false;
 
     const handleClick = () => {
         const input = document.querySelector('.color-input .value');
@@ -11,8 +12,15 @@
         const task = document.querySelector('input[name="task"]');
         const date = document.querySelector('input[name="date"]');
         
+        if (title.value == "") {
+            event?.preventDefault();
+            isError = true;
+            return false;
+        }
+        isError = false;
+
         storage.addData({ 
-            title: title.value ?? "", 
+            title: title.value, 
             task: task.value ?? "", 
             date: date.value ?? "",
             color: input?.innerHTML?.length > 7 ? "Default" : input?.innerHTML,
@@ -73,15 +81,18 @@
 </style>
 
 <div class="container">
+    {#if isError}
+        <p style="color:red">Title field is required!</p>
+    {/if}
     <form id="todo">
-        <Input type="text" name="title" placeholder="Title"/>
+        <Input type="text" name="title" placeholder="Title" required={true}/>
         <Input type="text" name="task" placeholder="Task"/>
         <Input type="date" name="date" />
         <div class="color-input" on:click={() => { isActiveColorPicker = true }}>
             <div class="label"><label>Select custom color</label></div>
             <div class="value"><p>Default</p></div>
         </div>
-        <Button buttonAction={handleClick}><a href="/">Add new task</a></Button>
+        <Button><a href="/" on:click={handleClick}>Add new task</a></Button>
     </form>
     {#if (isActiveColorPicker === true)}
         <div class="color-picker">
